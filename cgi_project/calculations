@@ -1,0 +1,25 @@
+#! /usr/bin/python3
+import cgi
+
+print("Status: 200 OK")
+print("Content-Type: text/html")
+print()
+
+form = cgi.FieldStorage()
+if "number" in form:
+        number = form["number"].value
+else:
+        number = None
+
+if not number:
+        print("The variable \'number\' was not sent as a parameter")
+else:
+        try:
+                int(number)
+        except ValueError:
+                print("The variable \'number\', which was set to \'" + number + "\', cannot be converted to an integer.")
+        else:
+                print("The number is: " + str(number))
+                print("<br>")
+                print("<br>")
+                print("Its square is: " + str(int(number) * int(number)))
